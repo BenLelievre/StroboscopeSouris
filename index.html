@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="style.css" />
+<meta content="Strobe Light Generator" name="title">
+<title>INTERMINABLE</title>
+ 
+  <body onload="random_position()">
+  
+    <div id="bouton"onmouseover="random_position()">
+      <input type="button" value=STOP>
+    </div>
+
+  </body>     
+<script>
+
+var btn = document.querySelector('input');
+var bodyElement = document.querySelector("body");
+var i;
+var color =["black","white","yellow","red","orange","green","pink","blue","grey"];
+var timer;
+
+btn.addEventListener('click', updateBtn);
+
+function random_position()
+{
+  nav_left= Math.floor(Math.random() * 900)+50;
+  document.getElementById("bouton").style.left = +nav_left+"px";
+  nav_top= Math.floor(Math.random() * 500)+30;
+  document.getElementById("bouton").style.top = +nav_top+"px";
+}
+
+
+function Random(max){
+  return Math.floor(Math.random() * Math.floor(max));
+
+}
+function colorchange(){
+  i= Random(color.length);
+  bodyElement.style.background=color[i];
+  timer= setTimeout(colorchange,5);
+}
+colorchange()
+function updateBtn() {
+
+  if (btn.value === "STOP") {
+    btn.value = "START";
+    clearTimeout(timer) 
+  } 
+  else {
+    (btn.value = "START");
+    colorchange()
+  }
+}
+</script>
+</body>
+</html>
